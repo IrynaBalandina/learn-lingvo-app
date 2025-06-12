@@ -8,22 +8,34 @@ const teachersSlice = createSlice({
     status: "idle",
     error: null,
   },
-  reducers: {},
-  extraReducers: (builder) => {
+  reducers: {
+    toggleFavourite: (state, action) => {
+      const teacherId = action.payload;
+      const teacher = state.items.find(t => t.id === teacherId);
+      if (teacher) {
+        teacher.favourite = !teacher.favourite;
+      }
+    },
+  },
+  extraReducers: builder => {
     builder
-      .addCase(fetchTeachers.pending, (state) => {
+      .addCase(fetchTeachers.pending, state => {
         state.status = "loading";
-        state.error = null;
       })
       .addCase(fetchTeachers.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.items = action.payload;
+        state.items = action.payload.map((item, index) => ({
+          ...item,
+          id: index,
+          favourite: false
+        }));
       })
       .addCase(fetchTeachers.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
-  },
+  }
 });
 
+export const { toggleFavourite } = teachersSlice.actions;
 export default teachersSlice.reducer;

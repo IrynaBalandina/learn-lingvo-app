@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import teachersReducer from './teacherSlice.js';
+import filtersReducer from "./filterSlice.js";
+import teachersReducer from "./teacherSlice.js";
 
-export const store = configureStore({
+export  const store = configureStore({
   reducer: {
+    filters: filtersReducer,
     teachers: teachersReducer,
   },
 });

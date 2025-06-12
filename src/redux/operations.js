@@ -1,17 +1,13 @@
-import { ref, get } from "firebase/database";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { ref, get } from "firebase/database";
 import { database } from "../firebase";
 
-export const fetchTeachers = createAsyncThunk("teachers/fetchAll", async () => {
-  const dbRef = ref(database, "/");
-  const snapshot = await get(dbRef);
 
-  if (!snapshot.exists()) {
-    throw new Error("No data found");
-  }
+export const fetchTeachers = createAsyncThunk("teachers/fetch", async () => {
+  const snapshot = await get(ref(database));
+ const data = snapshot.val();
 
-  const data = snapshot.val();
+const teachers = Array.isArray(data) ? data : data.teachers;
 
-
-  return Object.values(data);
+return teachers?.filter(Boolean) ?? [];
 });
