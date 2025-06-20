@@ -1,0 +1,80 @@
+.container {
+  padding: 40px 20px;
+  font-family: sans-serif;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.right {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.right img {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.highlight {
+  background-color: #cde8e2;
+  padding: 0 5px;
+  border-radius: 4px;
+}
+
+p {
+  margin-top: 16px;
+  font-size: 16px;
+  color: #333;
+}
+
+button {
+  margin-top: 24px;
+  padding: 12px 24px;
+  background-color: #7fae96;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 30px 0;
+  border-top: 1px dashed #ccc;
+  border-bottom: 1px dashed #ccc;
+}
+
+.stats div {
+  text-align: center;
+}
+
+.stats h2 {
+  font-size: 24px;
+  color: #222;
+}
+
+.stats p {
+  color: #777;
+}
