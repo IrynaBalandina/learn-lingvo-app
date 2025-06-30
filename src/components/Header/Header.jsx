@@ -1,8 +1,17 @@
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { LogIn } from 'lucide-react';
+import { LogIn, LogOut } from 'lucide-react';
 import css from './Header.module.css';
+import { logout } from '../../redux/authSlice';
 
 const Header = ({ onLoginClick }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <header className={css.header}>
       <NavLink to="/" className={css.logo}>
@@ -19,13 +28,23 @@ const Header = ({ onLoginClick }) => {
       </nav>
 
       <div className={css.authButtons}>
-        <button className={css.loginBtn} onClick={onLoginClick}>
-          <LogIn size={16} /> Log in
-        </button>
-   
-        <NavLink to="/auth" className={css.registerBtn}>
-          Registration
-        </NavLink>
+        {user ? (
+          <>
+            <span className={css.userName}>👤 {user.email}</span>
+            <button onClick={handleLogout} className={css.logoutBtn}>
+              <LogOut size={16} /> Log out
+            </button>
+          </>
+        ) : (
+          <>
+            <button onClick={onLoginClick} className={css.loginBtn}>
+              <LogIn size={16} /> Log in
+            </button>
+            <NavLink to="/auth" className={css.registerBtn}>
+              Registration
+            </NavLink>
+          </>
+        )}
       </div>
     </header>
   );

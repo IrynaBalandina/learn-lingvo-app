@@ -1,32 +1,47 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const login = createAsyncThunk('auth/login', async (credentials) => {
-  const { email, password } = credentials;
+export const login = createAsyncThunk('auth/login', async (formData, thunkAPI) => {
+  const { email, password } = formData;
+  const users = JSON.parse(localStorage.getItem('users')) || [];
 
-  if (email === 'user@example.com' && password === '123456') {
-    return { email, token: 'fake_token_123' };
+  const existingUser = users.find(user => user.email === email && user.password === password);
+
+  if (existingUser) {
+    localStorage.setItem('user', JSON.stringify({ email }));
+    return { email };
   } else {
-    throw new Error('Invalid credentials');
+    return thunkAPI.rejectWithValue('Invalid email or password');
   }
 });
 
-export const register = createAsyncThunk('auth/register', async (userData) => {
+export const register = createAsyncThunk('auth/register', async (formData, thunkAPI) => {
+  const { email, password } = formData;
+  const users = JSON.parse(localStorage.getItem('users')) || [];
 
-  return { ...userData, token: 'fake_token_123' };
+  const exists = users.some(user => user.email === email);
+  if (exists) {
+    return thunkAPI.rejectWithValue('Email already registered');
+  }
+
+  const newUser = { email, password };
+  const updatedUsers = [...users, newUser];
+  localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+
+  return null;
 });
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     user: null,
-    isAuthenticated: false,
     loading: false,
     error: null,
   },
   reducers: {
-    logout(state) {
+    logout: (state) => {
       state.user = null;
-      state.isAuthenticated = false;
+      localStorage.removeItem('user');
     },
   },
   extraReducers: (builder) => {
@@ -38,15 +53,23 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
-        state.isAuthenticated = true;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.payload;
       })
-      .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isAuthenticated = true;
+
+      .addCase(register.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(register.fulfilled, (state) => {
+        state.loading = false;
+     
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

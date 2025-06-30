@@ -1,5 +1,7 @@
 import React, { useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Header from '../Header/Header.jsx'; 
 import AuthModal from '../AuthModal/AuthModal.jsx';
@@ -15,6 +17,7 @@ const App = () => {
 
   return (
     <Router>
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
       <Header onLoginClick={() => setShowModal(true)} />
 
       {showModal && <AuthModal onClose={() => setShowModal(false)} />}
