@@ -45,6 +45,7 @@ const Filters = () => {
 
       <div>
         <strong>Мови:</strong>
+
         {allLanguages.map((lang) => (
           <label key={lang}>
             <input

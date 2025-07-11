@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Header from '../Header/Header.jsx'; 
 import AuthModal from '../AuthModal/AuthModal.jsx';
+import PrivateRoute from "../PrivateRoute/PrivateRoute.jsx";
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
 const TeachersPage = lazy(() => import('../../pages/TeachersPage/TeachersPage'));
@@ -28,7 +29,15 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/teachers" element={<TeachersPage />} />
             <Route path="/teachers/:id" element={<TeacherDetailPage />} />
-            <Route path="/favourites" element={<FavouritePage />} />
+            
+<Route
+  path="/favourites"
+  element={
+    <PrivateRoute>
+      <FavouritePage />
+    </PrivateRoute>
+  }
+/>
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>

@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+const userFromStorage = JSON.parse(localStorage.getItem('user'));
+
 export const login = createAsyncThunk('auth/login', async (formData, thunkAPI) => {
   const { email, password } = formData;
   const users = JSON.parse(localStorage.getItem('users')) || [];
@@ -27,14 +29,14 @@ export const register = createAsyncThunk('auth/register', async (formData, thunk
   const updatedUsers = [...users, newUser];
   localStorage.setItem('users', JSON.stringify(updatedUsers));
 
-
-  return null;
+  localStorage.setItem('user', JSON.stringify({ email }));
+  return { email };
 });
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: null,
+    user: userFromStorage || null,
     loading: false,
     error: null,
   },
@@ -46,12 +48,13 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+
       .addCase(login.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loading = true;
         state.user = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
@@ -59,13 +62,14 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
 
+    
       .addCase(register.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(register.fulfilled, (state) => {
-        state.loading = false;
-     
+      .addCase(register.fulfilled, (state, action) => {
+        state.loading = true;
+        state.user = action.payload;
       })
       .addCase(register.rejected, (state, action) => {
         state.loading = false;
