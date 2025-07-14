@@ -13,36 +13,48 @@ const TeacherProfile = ({ teacher }) => {
       dispatch(openModal({ type: 'auth' })); 
       return;
     }
-
     dispatch(toggleFavourite(teacher.id));
   };
 
   return (
-<div className={styles.teacher_info}>
-  <div className={styles.teacher_header}>
-    <p><strong>Lessons:</strong> Online/Offline</p>
-    <p><strong>Done:</strong> {teacher.lessons_done}</p>
-    <p><strong>Rating:</strong> ⭐ {teacher.rating}</p>
-    <p><strong>Price:</strong> ${teacher.price_per_hour}/год</p>
-  </div>
-      <img className={styles.teacher.avatar} src={teacher.avatar_url} alt={teacher.name} />
-  <h2>{teacher.name} {teacher.surname}</h2>
+    <div className={styles.card}>
+      {/* Фото викладача */}
+      <div className={styles.avatarSection}>
+        <img src={teacher.avatar_url} alt={teacher.name} className={styles.avatar} />
+      </div>
 
-  <div className={styles.teacher_details}>
-    {teacher.languages && <p><strong>Мови:</strong> {teacher.languages.join(", ")}</p>}
-    {teacher.levels && <p><strong>Рівні:</strong> {teacher.levels.join(", ")}</p>}
-    {teacher.lesson_info && <p><strong>Опис:</strong> {teacher.lesson_info}</p>}
-    {teacher.conditions && <p><strong>Умови:</strong> {teacher.conditions.join("; ")}</p>}
-    {teacher.experience && <p><strong>Досвід:</strong> {teacher.experience}</p>}
-  </div>
+      {/* Основна інформація */}
+      <div className={styles.infoSection}>
+        <div className={styles.header}>
+          <p>📡 Lessons online</p>
+          <p>Lessons done: {teacher.lessons_done}</p>
+          <p>⭐ Rating: {teacher.rating}</p>
+          <p>💰 Price / 1 hour: {teacher.price_per_hour}$</p>
+        </div>
 
-  <button onClick={handleFavouriteClick}>
-    {teacher.favourite ? '💖 В обраному' : '🤍 Додати в обране'}
-  </button>
+        <h2>{teacher.name} {teacher.surname}</h2>
+        <p><strong>Speaks:</strong> {teacher.languages.join(", ")}</p>
+        <p><strong>Lesson Info:</strong> {teacher.lesson_info}</p>
+        <p><strong>Conditions:</strong> {teacher.conditions.join("; ")}</p>
 
-  <Link to={`/teachers/${teacher.id}`}>Read more</Link>
-</div>
+        {/* Кнопки рівнів */}
+        <div className={styles.levels}>
+          {teacher.levels.map(level => (
+            <span key={level} className={styles.levelTag}>{level}</span>
+          ))}
+        </div>
+
+        {/* Нижній блок */}
+        <div className={styles.actions}>
+          <Link to={`/teachers/${teacher.id}`} className={styles.readMore}>Read more</Link>
+          <button onClick={handleFavouriteClick} className={styles.favButton}>
+            {teacher.favourite ? "💖" : "🤍"}
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default TeacherProfile;
+

@@ -1,69 +1,65 @@
-.teacher_card {
+.card {
+  display: flex;
   background: #fff;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   margin-bottom: 20px;
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.teacher_card img {
-  width: 70px;
-  height: 70px;
+.avatarSection {
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   object-fit: cover;
-  flex-shrink: 0;
 }
 
-.teacher_card h2 {
-  margin: 0 0 10px;
-  font-size: 18px;
-  font-weight: 600;
+.infoSection {
+  flex: 1;
 }
 
-.teacher_header {
+.header {
   display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  gap: 15px;
   font-size: 14px;
   color: #555;
   margin-bottom: 10px;
 }
 
-.teacher_header p {
-  margin: 0;
+.levels {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
 }
 
-.teacher_info {
-  flex: 1;
+.levelTag {
+  background: #eee;
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 12px;
 }
 
-.teacher.avatar{
-    width: 96px;
-    height: 96px;
-    Top:12px;
-     Left: 12px;
-     Radius:100px;
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
 }
-button {
+
+.readMore {
+  text-decoration: underline;
+  color: #007bff;
+  font-size: 14px;
+}
+
+.favButton {
   background: none;
   border: none;
+  font-size: 20px;
   cursor: pointer;
-  font-size: 16px;
-}
- 
-a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #007bff;
-  text-decoration: underline;
-}
-
-.teacher-details {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }

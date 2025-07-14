@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTeachers } from "../../redux/operations";
 
 import TeacherProfile from "../TeacherProfile/TeacherProfile";
-import Filters from "../Filters.jsx";
+import Filters from "../Filters/Filters.jsx";
 
 const TeachersList = () => {
   const dispatch = useDispatch();

@@ -1,0 +1,48 @@
+.filters {
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+  flex-wrap: wrap;
+}
+
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+label {
+  margin-bottom: 4px;
+  color: #666;
+}
+
+select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 14px;
+  background-color: white;
+  appearance: none;
+  cursor: pointer;
+  min-width: 140px;
+}
+
+select:focus {
+  outline: none;
+  border-color: #999;
+}
+
+.button {
+  padding: 8px 18px;
+  border: none;
+  background-color: #ffcc00;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  height: 40px;
+  margin-top: auto;
+}
+
+.button:hover {
+  background-color: #ffc107;
+}
