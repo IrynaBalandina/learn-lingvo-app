@@ -18,7 +18,7 @@ const App = () => {
 
   return (
     <Router>
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+      <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <Header onLoginClick={() => setShowModal(true)} />
 
       {showModal && <AuthModal onClose={() => setShowModal(false)} />}

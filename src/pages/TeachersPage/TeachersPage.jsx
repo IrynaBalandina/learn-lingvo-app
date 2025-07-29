@@ -1,11 +1,12 @@
 import TeachersList from "../../components/TeachersList/TeachersList.jsx"
 
+
 const TeachersPage = () => {
   return (
     <div>
-<TeachersList/>
+      <TeachersList />
     </div>
-  )
-}
+  );
+};
 
 export default TeachersPage;

@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchTeachers } from "./operations.js";
 
+
 const saveFavouritesToLocalStorage = (items) => {
-  const favIds = items.filter(t => t.favourite).map(t => t.id);
+  const favIds = items
+    .filter(t => t.favourite)
+    .map(t => String(t.id));
   localStorage.setItem('favourites', JSON.stringify(favIds));
 };
 
@@ -15,7 +18,9 @@ const teachersSlice = createSlice({
   },
   reducers: {
     toggleFavourite: (state, action) => {
-      const teacher = state.items.find(t => t.id === action.payload);
+const teacherId = String(action.payload);
+const teacher = state.items.find(t => String(t.id) === teacherId);
+
       if (teacher) {
         teacher.favourite = !teacher.favourite;
         saveFavouritesToLocalStorage(state.items);
@@ -31,13 +36,24 @@ const teachersSlice = createSlice({
       .addCase(fetchTeachers.fulfilled, (state, action) => {
         state.status = "succeeded";
 
-        const favourites = JSON.parse(localStorage.getItem('favourites')) || [];
+        let favourites = [];
+        try {
+          const parsed = JSON.parse(localStorage.getItem('favourites'));
+          favourites = Array.isArray(parsed) ? parsed.map(String) : [];
+        } catch {
+          favourites = [];
+        }
 
-        state.items = action.payload.map((item, index) => ({
-          ...item,
-          id: index,
-          favourite: favourites.includes(index),
-        }));
+        console.log("🔍 Отримані викладачі:", action.payload);
+
+        state.items = action.payload.map((item, index) => {
+          const itemId = String(item.id ?? index);
+          return {
+            ...item,
+            id: itemId,
+            favourite: favourites.includes(itemId),
+          };
+        });
       })
       .addCase(fetchTeachers.rejected, (state, action) => {
         state.status = "failed";

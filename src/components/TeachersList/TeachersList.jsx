@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTeachers } from "../../redux/operations";
 
@@ -7,6 +7,7 @@ import Filters from "../Filters/Filters.jsx";
 
 const TeachersList = () => {
   const dispatch = useDispatch();
+  const [visibleCount, setVisibleCount] = useState(4);
 
   const { items, status, error } = useSelector(state => state.teachers);
   const { languages, levels, priceRange } = useSelector(state => state.filters);
@@ -15,33 +16,35 @@ const TeachersList = () => {
     dispatch(fetchTeachers());
   }, [dispatch]);
 
-  console.log("Фільтри:", { languages, levels, priceRange });
-  console.log("Викладачі:", items);
-
   const filtered = items.filter(teacher => {
     const langs = Array.isArray(teacher.languages)
-      ? teacher.languages.map(l => l.toLowerCase())
+      ? teacher.languages.map(l => typeof l === 'string' ? l.toLowerCase() : "")
       : [];
 
-    const levelsList = Array.isArray(teacher.levels)
-      ? teacher.levels
-      : [];
-
-    const price = Number(teacher.price_per_hour);
+    const levelsList = Array.isArray(teacher.levels) ? teacher.levels : [];
+    const price = Number(teacher.price_per_hour || 0);
 
     const matchLanguage =
       languages.length === 0 ||
-      langs.some(lang => languages.map(l => l.toLowerCase()).includes(lang));
+      langs.some(lang =>
+        languages.map(l => l.toLowerCase()).includes(lang)
+      );
 
     const matchLevel =
       levels.length === 0 ||
-      levelsList.some(level => levels.some(f => level.startsWith(f)));
+      levelsList.some(level => levels.includes(level));
 
     const matchPrice =
       !isNaN(price) && price >= priceRange[0] && price <= priceRange[1];
 
     return matchLanguage && matchLevel && matchPrice;
   });
+
+  const visibleTeachers = filtered.slice(0, visibleCount);
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + 4);
+  };
 
   if (status === "loading") return <p>Завантаження...</p>;
   if (status === "failed") return <p>Помилка: {error}</p>;
@@ -50,10 +53,25 @@ const TeachersList = () => {
     <div>
       <Filters />
       <h2>Список викладачів</h2>
+
       {filtered.length === 0 ? (
         <p>Немає викладачів за заданими фільтрами</p>
       ) : (
-        filtered.map((t, i) => <TeacherProfile key={i} teacher={t} />)
+        <>
+          {visibleTeachers.map((t, i) => {
+            if (typeof t !== 'object' || !t.name) {
+             
+              return null;
+            }
+            return <TeacherProfile key={String(t.id)} teacher={t} />;
+          })}
+
+          {visibleCount < filtered.length && (
+            <button onClick={handleLoadMore} style={{ marginTop: "20px" }}>
+              Load more
+            </button>
+          )}
+        </>
       )}
     </div>
   );
