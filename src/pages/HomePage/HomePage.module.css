@@ -34,7 +34,7 @@ h1 {
 }
 
 .highlight {
-  background-color: #cde8e2;
+
   padding: 0 5px;
   border-radius: 4px;
 }
@@ -48,7 +48,7 @@ p {
 button {
   margin-top: 24px;
   padding: 12px 24px;
-  background-color: #7fae96;
+  /* background-color: #7fae96; */
   border: none;
   color: white;
   font-weight: bold;

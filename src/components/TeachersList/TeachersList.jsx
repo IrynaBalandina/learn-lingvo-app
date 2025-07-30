@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTeachers } from "../../redux/operations";
+import css from "./TeacherList.module.css";
 
 import TeacherProfile from "../TeacherProfile/TeacherProfile";
 import Filters from "../Filters/Filters.jsx";
@@ -68,11 +69,11 @@ There is no teacher according to the specified filters</p>
           })}
 
           {visibleCount < filtered.length && (
-            <button onClick={handleLoadMore} style={{ marginTop: "20px" }}>
+            <button className={css.loadButton} onClick={handleLoadMore} style={{ marginTop: "20px" }}>
               Load more
             </button>
           )}
-        </>
+        </> 
       )}
     </div>
   );

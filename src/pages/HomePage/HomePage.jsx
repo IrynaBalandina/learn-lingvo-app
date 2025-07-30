@@ -1,27 +1,45 @@
-import styles from './HomePage.module.css';
-import heroImg from '../../assets/heroImg.jpg'; 
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './HomePage.module.css';
+import themes from '../../themes.js';
+
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [themeIndex, setThemeIndex] = useState(0);
 
-  return (
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setThemeIndex((prev) => (prev + 1) % themes.length);
+    }, 4000); 
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const theme = themes[themeIndex];
+
+   return (
     <div className={styles.container}>
       <section className={styles.hero}>
         <div className={styles.left}>
           <h1>
             Unlock your potential with the best{' '}
-            <span className={styles.highlight}>language</span> tutors
+            <span style={{ color: theme.highlightColor }}>language</span> tutors
           </h1>
           <p>
             Embark on an Exciting Language Journey with Expert Language Tutors.
-            Elevate your language proficiency to new heights by connecting with
-            highly qualified and experienced tutors.
+            Elevate your language proficiency by connecting with experienced tutors.
           </p>
-          <button onClick={() => navigate('/teachers')}>Get started</button>
+          <button
+            style={{ backgroundColor: theme.buttonColor }}
+            onClick={() => navigate('/teachers')}
+          >
+            Get started
+          </button>
         </div>
+
         <div className={styles.right}>
-          <img src={heroImg} alt="Hero" />
+          <img src={theme.image} alt="Hero" />
         </div>
       </section>
 
@@ -46,5 +64,4 @@ const HomePage = () => {
     </div>
   );
 };
-
 export default HomePage;

@@ -7,6 +7,7 @@ import Header from '../Header/Header.jsx';
 import AuthModal from '../AuthModal/AuthModal.jsx';
 import PrivateRoute from "../PrivateRoute/PrivateRoute.jsx";
 
+
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
 const TeachersPage = lazy(() => import('../../pages/TeachersPage/TeachersPage'));
 const TeacherDetailPage = lazy(() => import('../../pages/TeacherDetailPage/TeacherDetailPage.jsx'));
@@ -17,6 +18,7 @@ const App = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
+
     <Router>
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <Header onLoginClick={() => setShowModal(true)} />
@@ -43,6 +45,7 @@ const App = () => {
         </Suspense>
       </main>
     </Router>
+ 
   );
 };
 
