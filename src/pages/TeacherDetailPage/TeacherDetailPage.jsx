@@ -1,23 +1,32 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+
 import css from "./TeacherDetailPage.module.css";
 import BookTrialModal from "../../components/BookTrialModal/BookTrialModal.jsx";
+import { fetchTeachers } from "../../redux/operations";
 
 const TeacherDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const teacher = useSelector(state =>
-    state.teachers.items.find(t => t.id === Number(id))
-  );
+  const { items, status } = useSelector(state => state.teachers);
+
+  const teacher = items.find(t => String(t.id) === id);
+
+  useEffect(() => {
+    if (!teacher && status === "idle") {
+      dispatch(fetchTeachers());
+    }
+  }, [dispatch, teacher, status]);
 
   if (!teacher) {
     return (
       <div>
-        <h2>Викладача не знайдено</h2>
-        <button onClick={() => navigate(-1)}>← Назад</button>
+        <h2>Teacher is not found</h2>
+        <button onClick={() => navigate(-1)}>← Back</button>
       </div>
     );
   }
@@ -37,7 +46,7 @@ const TeacherDetailPage = () => {
       </div>
 
       <div className={css.miniHeader}>
-        <span>🔝 Lessons online</span>
+        <span>📡 Lessons online</span>
         <span>📘 Lessons done: {teacher.lessons_done}</span>
         <span>⭐ Rating: {teacher.rating}</span>
         <span>💵 Price / 1 hour: {teacher.price_per_hour}$</span>
@@ -69,7 +78,12 @@ const TeacherDetailPage = () => {
         </div>
       )}
 
-      {isModalOpen && <BookTrialModal teacher={teacher} onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && (
+        <BookTrialModal
+          teacher={teacher}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </div>
   );
 };

@@ -7,7 +7,7 @@ const NotFoundPage = () => {
   return (
     <div style={{ textAlign: 'center', padding: '50px' }}>
       <h1>404</h1>
-      <p>Сторінку не знайдено</p>
+      <p>Page is not found</p>
       <button
         onClick={() => navigate('/')}
         style={{
@@ -21,7 +21,7 @@ const NotFoundPage = () => {
           marginTop: '20px'
         }}
       >
-        На головну
+     To Home page
       </button>
     </div>
   );

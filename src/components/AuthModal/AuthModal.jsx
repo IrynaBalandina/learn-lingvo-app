@@ -24,33 +24,47 @@ const AuthModal = ({ onClose }) => {
     }
   };
 
-useEffect(() => {
-  if (user) {
-    onClose(); // закрити при вході
-  }
-}, [user, onClose]);
 
-useEffect(() => {
-  if (!loading && !user && !error && !isLoginMode) {
-    // Якщо реєстрація пройшла, переключити в логін-режим
-    setIsLoginMode(true);
-  }
-}, [loading, user, error, isLoginMode]);
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
 
-useEffect(() => {
-  if (error) {
-    toast.error(error);
-  }
-}, [error]);
 
   useEffect(() => {
     if (user) {
-      onClose(); // Закриваємо модалку при успішній авторизації/реєстрації
+      onClose(); 
     }
   }, [user, onClose]);
 
+
+  useEffect(() => {
+    if (!loading && !user && !error && !isLoginMode) {
+      setIsLoginMode(true);
+    }
+  }, [loading, user, error, isLoginMode]);
+
+  
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
+
+  
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className={css.backdrop}>
+    <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.modal}>
         <button className={css.close} onClick={onClose}>×</button>
         <h2>{isLoginMode ? 'Log In' : 'Register'}</h2>

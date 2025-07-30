@@ -46,16 +46,17 @@ const TeachersList = () => {
     setVisibleCount(prev => prev + 4);
   };
 
-  if (status === "loading") return <p>Завантаження...</p>;
-  if (status === "failed") return <p>Помилка: {error}</p>;
+  if (status === "loading") return <p>Loading...</p>;
+  if (status === "failed") return <p>Error: {error}</p>;
 
   return (
     <div>
       <Filters />
-      <h2>Список викладачів</h2>
+      <h2>Our teachers</h2>
 
       {filtered.length === 0 ? (
-        <p>Немає викладачів за заданими фільтрами</p>
+        <p>
+There is no teacher according to the specified filters</p>
       ) : (
         <>
           {visibleTeachers.map((t, i) => {

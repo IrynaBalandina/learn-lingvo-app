@@ -11,7 +11,7 @@ const TeacherProfile = ({ teacher }) => {
 
 const handleFavouriteClick = () => {
   if (!isAuthenticated) {
-    toast.warn("Цей функціонал доступний лише для авторизованих користувачів", {
+    toast.warn("To use this feature, you need to log in!", {
       position: "top-center",
       autoClose: 3000,
     });

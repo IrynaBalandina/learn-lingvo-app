@@ -17,9 +17,9 @@ const FavouritePage = () => {
 
   return (
     <div>
-      <h2>Обрані викладачі</h2>
+      <h2>Favourite teachers</h2>
       {favouriteTeachers.length === 0 ? (
-        <p>Немає доданих в обране викладачів.</p>
+        <p>There is no favourite teachers</p>
       ) : (
         favouriteTeachers.map(t => (
           <TeacherProfile key={t.id} teacher={t} />

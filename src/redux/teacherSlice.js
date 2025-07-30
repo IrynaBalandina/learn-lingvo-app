@@ -44,7 +44,6 @@ const teacher = state.items.find(t => String(t.id) === teacherId);
           favourites = [];
         }
 
-        console.log("🔍 Отримані викладачі:", action.payload);
 
         state.items = action.payload.map((item, index) => {
           const itemId = String(item.id ?? index);
