@@ -1,6 +1,13 @@
 .container {
   padding: 40px 20px;
   font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.contentWrapper {
+  max-width: 1184px;
+  width: 100%;
 }
 
 .hero {
@@ -14,27 +21,26 @@
 
 .left {
   flex: 1;
-  min-width: 300px;
+  width: 720px;
 }
 
 .right {
   flex: 1;
-  min-width: 300px;
   text-align: center;
 }
 
 .right img {
   max-width: 100%;
   border-radius: 12px;
+  line-height: 56px;
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 48px;
   font-weight: bold;
 }
 
 .highlight {
-
   padding: 0 5px;
   border-radius: 4px;
 }
@@ -47,34 +53,48 @@ p {
 
 button {
   margin-top: 24px;
-  padding: 12px 24px;
-  /* background-color: #7fae96; */
+  padding: 16px 8px;
   border: none;
   color: white;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
+  width: 267px;
+  height: 60px;
+}
+
+
+.statsWrapper {
+  max-width: 1312px;
+
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .stats {
   display: flex;
-  justify-content: space-around;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 30px 0;
-  border-top: 1px dashed #ccc;
-  border-bottom: 1px dashed #ccc;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 16px 24px;
+  border: 1px dashed #ccc;
+  border-radius: 30px;
+  box-sizing: border-box;
 }
 
-.stats div {
-  text-align: center;
+.statItem {
+  display: flex;
+  align-items: center;
 }
 
-.stats h2 {
-  font-size: 24px;
-  color: #222;
+.statItem h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-right: 16px;
 }
 
-.stats p {
+.statItem p {
   color: #777;
+  font-size: 14px;
+  white-space: nowrap;
 }

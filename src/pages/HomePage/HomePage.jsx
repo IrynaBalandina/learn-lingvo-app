@@ -11,7 +11,7 @@ const HomePage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setThemeIndex((prev) => (prev + 1) % themes.length);
-    }, 4000); 
+    }, 8000); 
 
     return () => clearInterval(interval);
   }, []);
@@ -19,9 +19,10 @@ const HomePage = () => {
   const theme = themes[themeIndex];
 
    return (
-    <div className={styles.container}>
-      <section className={styles.hero}>
-        <div className={styles.left}>
+   <div className={styles.container}>
+  <div className={styles.contentWrapper}>
+    <section className={styles.hero}>
+      <div className={styles.left}>
           <h1>
             Unlock your potential with the best{' '}
             <span style={{ color: theme.highlightColor }}>language</span> tutors
@@ -36,32 +37,30 @@ const HomePage = () => {
           >
             Get started
           </button>
-        </div>
-
-        <div className={styles.right}>
+      </div>
+      <div className={styles.right}>
           <img src={theme.image} alt="Hero" />
-        </div>
-      </section>
+          </div>
+    </section>
 
-      <section className={styles.stats}>
-        <div>
-          <h2>32,000+</h2>
-          <p>Experienced tutors</p>
-        </div>
-        <div>
-          <h2>300,000+</h2>
-          <p>5-star tutor reviews</p>
-        </div>
-        <div>
-          <h2>120+</h2>
-          <p>Subjects taught</p>
-        </div>
-        <div>
-          <h2>200+</h2>
-          <p>Tutor nationalities</p>
-        </div>
-      </section>
-    </div>
+    <section className={styles.stats}>
+      <div className={styles.statItem}>
+        <h2>32,000+</h2><p>Experienced tutors</p>
+      </div>
+      <div className={styles.statItem}>
+        <h2>300,000+</h2><p>5-star tutor reviews</p>
+      </div>
+      <div className={styles.statItem}>
+        <h2>120+</h2><p>Subjects taught</p>
+      </div>
+      <div className={styles.statItem}>
+        <h2>200+</h2><p>Tutor nationalities</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+    
   );
 };
 export default HomePage;

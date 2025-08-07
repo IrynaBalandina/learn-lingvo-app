@@ -23,12 +23,15 @@
 
 .closeBtn {
   position: absolute;
-  right: 12px;
-  top: 12px;
+  width: 32px;
+  height: 32px;
+left: 440px;
+  top: -15px;
   font-size: 20px;
   border: none;
   background: none;
   cursor: pointer;
+  color: black;
 }
 
 .title {

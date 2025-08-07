@@ -1,9 +1,9 @@
-import TeachersList from "../../components/TeachersList/TeachersList.jsx"
-
+import TeachersList from "../../components/TeachersList/TeachersList.jsx";
+import styles from './TeachersPage.module.css';
 
 const TeachersPage = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <TeachersList />
     </div>
   );

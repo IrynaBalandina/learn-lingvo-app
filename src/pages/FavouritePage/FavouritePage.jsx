@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TeacherProfile from "../../components/TeacherProfile/TeacherProfile";
 import { fetchTeachers } from "../../redux/operations";
+import css from './FavouritePage.module.css';
 
 const FavouritePage = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const FavouritePage = () => {
   }, [status, dispatch]);
 
   return (
-    <div>
+    <div className={css.container}>
       <h2>Favourite teachers</h2>
       {favouriteTeachers.length === 0 ? (
         <p>There is no favourite teachers</p>

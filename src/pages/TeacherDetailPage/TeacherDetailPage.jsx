@@ -34,7 +34,7 @@ const TeacherDetailPage = () => {
   return (
     <div className={css.wrapper}>
       <button onClick={() => navigate(-1)} className={css.backBtn}>
-        ← Назад до списку
+        ← Back
       </button>
 
       <div className={css.header}>

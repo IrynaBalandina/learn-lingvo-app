@@ -1,50 +1,57 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { LogIn, LogOut } from 'lucide-react';
-import css from './Header.module.css';
-import { logout } from '../../redux/authSlice';
 
-const Header = ({ onLoginClick }) => {
+
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { openModal } from '../../redux/modalSlice';
+import { logout } from '../../redux/authSlice';
+import styles from './Header.module.css';
+
+const Header = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+
+  const user = useSelector(state => state.auth.user);
+
+  const handleLoginClick = () => {
+    dispatch(openModal({ type: 'auth', props: { mode: 'login' } }));
+  };
+
+  const handleRegisterClick = () => {
+    dispatch(openModal({ type: 'auth', props: { mode: 'register' } }));
+  };
 
   const handleLogout = () => {
     dispatch(logout());
+    navigate('/');  
   };
 
   return (
-    <header className={css.header}>
-      <NavLink to="/" className={css.logo}>
-        🌐 LearnLingo
-      </NavLink>
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <Link to="/" className={styles.logo}>
+          <img src="/src/assets/logoIcon.png" alt="LearnLingo" />
+          LearnLingo
+        </Link>
 
-      <nav className={css.nav}>
-        <NavLink to="/" className={({ isActive }) => isActive ? `${css.navLink} ${css.active}` : css.navLink} end>
-          Home
-        </NavLink>
-        <NavLink to="/teachers" className={({ isActive }) => isActive ? `${css.navLink} ${css.active}` : css.navLink}>
-          Teachers
-        </NavLink>
-      </nav>
+        <nav className={styles.nav}>
+          <NavLink to="/" className={({ isActive }) => isActive ? styles.active : ''}>Home</NavLink>
+          <NavLink to="/teachers" className={({ isActive }) => isActive ? styles.active : ''}>Teachers</NavLink>
+        
+        </nav>
 
-      <div className={css.authButtons}>
-        {user ? (
-          <>
-            <span className={css.userName}>👤 {user.email}</span>
-            <button onClick={handleLogout} className={css.logoutBtn}>
-              <LogOut size={16} /> Log out
-            </button>
-          </>
-        ) : (
-          <>
-            <button onClick={onLoginClick} className={css.loginBtn}>
-              <LogIn size={16} /> Log in
-            </button>
-            <NavLink to="/auth" className={css.registerBtn}>
-              Registration
-            </NavLink>
-          </>
-        )}
+        <div className={styles.authButtons}>
+          {user ? (
+            <>
+              <span className={styles.userEmail}>{user.email}</span>
+              <button onClick={handleLogout} className={styles.logoutBtn}>Log out</button>
+            </>
+          ) : (
+            <>
+              <button onClick={handleLoginClick} className={styles.loginBtn}>Log in</button>
+              <button onClick={handleRegisterClick} className={styles.registerBtn}>Registration</button>
+            </>
+          )}
+        </div>
       </div>
     </header>
   );

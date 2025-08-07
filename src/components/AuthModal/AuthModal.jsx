@@ -4,9 +4,9 @@ import { login, register } from '../../redux/authSlice.js';
 import css from './AuthModal.module.css';
 import { toast } from 'react-toastify';
 
-const AuthModal = ({ onClose }) => {
+const AuthModal = ({ onClose, mode = 'login' }) => {
   const dispatch = useDispatch();
-  const [isLoginMode, setIsLoginMode] = useState(true);
+  const [isLoginMode, setIsLoginMode] = useState(mode === 'login');
   const [form, setForm] = useState({ email: '', password: '' });
 
   const { error, loading, user } = useSelector((state) => state.auth);
@@ -24,6 +24,20 @@ const AuthModal = ({ onClose }) => {
     }
   };
 
+  useEffect(() => {
+    if (user) {
+      onClose();
+    }
+  }, [user, onClose]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      if (error === 'User not found' && isLoginMode) {
+        setIsLoginMode(false);
+      }
+    }
+  }, [error, isLoginMode]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -35,28 +49,6 @@ const AuthModal = ({ onClose }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-
-  useEffect(() => {
-    if (user) {
-      onClose(); 
-    }
-  }, [user, onClose]);
-
-
-  useEffect(() => {
-    if (!loading && !user && !error && !isLoginMode) {
-      setIsLoginMode(true);
-    }
-  }, [loading, user, error, isLoginMode]);
-
-  
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-  }, [error]);
-
-  
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -91,7 +83,6 @@ const AuthModal = ({ onClose }) => {
             {loading ? 'Please wait...' : isLoginMode ? 'Log In' : 'Register'}
           </button>
         </form>
-        {error && <p className={css.error}>{error}</p>}
         <button className={css.switch} onClick={() => setIsLoginMode(!isLoginMode)}>
           {isLoginMode ? 'No account? Register' : 'Have an account? Log in'}
         </button>

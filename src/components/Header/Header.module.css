@@ -1,84 +1,64 @@
+
 .header {
+  background: #fff;
+  padding: 20px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  height: 48px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 32px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
 }
 
-
 .logo {
-  font-size: 24px;
-  font-weight: 700;
-  color: #1a1a1a;
-  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
   display: flex;
   align-items: center;
   gap: 8px;
+  color: #000;
+  text-decoration: none;
 }
 
 .nav {
   display: flex;
-  gap: 32px;
-  margin-left: 40px;
+  gap: 24px;
 }
 
-.navLink {
-  font-size: 16px;
-  color: #1a1a1a;
+.nav a {
   text-decoration: none;
+  color: #000;
   font-weight: 500;
-  position: relative;
-  transition: color 0.3s;
-}
-
-.navLink:hover {
-  color: #00796b;
 }
 
 .active {
-  border-bottom: 2px solid #00796b;
-  color: #00796b;
+  color: #f4c12f;
 }
 
 .authButtons {
-  margin-left: auto;
   display: flex;
-  gap: 14px;
   align-items: center;
+  gap: 16px;
 }
 
 .loginBtn {
-  background: none;
+  background: transparent;
   border: none;
-  color: #1a1a1a;
-  font-size: 14px;
   font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
   cursor: pointer;
-  transition: color 0.3s;
-}
-
-.loginBtn:hover {
-  color: #00796b;
+  color: black;
 }
 
 .registerBtn {
-  background-color: #00796b;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 6px;
+  background: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 12px;
   text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.registerBtn:hover {
-  background-color: #005f53;
+  font-weight: 500;
 }
