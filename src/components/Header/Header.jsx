@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../redux/modalSlice';
 import { logout } from '../../redux/authSlice';
 import styles from './Header.module.css';
+import logoIcon from '../../assets/logoIcon.png';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const Header = () => {
     <header className={styles.header}>
       <div className={styles.container}>
         <Link to="/" className={styles.logo}>
-          <img src="/src/assets/logoIcon.png" alt="LearnLingo" />
+       <img src={logoIcon} alt="LearnLingo" />
           LearnLingo
         </Link>
 
