@@ -32,6 +32,20 @@
   margin-bottom: 10px;
 }
 
+.languages{
+  margin-right: 300px;
+}
+
+.spanPrice{
+  color:#38CD3E ;
+}
+
+
+.name{
+  font-size: 24px;
+  text-align: left;
+}
+
 .levels {
   display: flex;
   gap: 8px;

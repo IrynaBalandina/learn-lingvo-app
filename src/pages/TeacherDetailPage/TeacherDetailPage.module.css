@@ -27,8 +27,8 @@
 }
 
 .avatar {
-  width: 120px;
-  height: 120px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 0 0 6px #fff, 0 2px 6px rgba(0,0,0,0.08);
@@ -36,7 +36,7 @@
 
 
 .contentCol {
-  width: 968px; /* ensure exact width */
+  width: 968px; 
 }
 
 .languages{
@@ -56,7 +56,9 @@
   font-weight: 700;
 }
 
-
+.spanPrice{
+  color:#38CD3E ;
+}
 .heart {
   background: none;
   border: none;

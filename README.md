@@ -72,7 +72,7 @@ Fields:
 ## 🚀 Deployment
 
 - Deployed on Vercel  
-- [Link to App](https://learn-lingvo-app.vercel.app) *(вкажи, якщо є)*
+- [Link to App](https://learn-lingvo-app.vercel.app) 
 
 ---
 

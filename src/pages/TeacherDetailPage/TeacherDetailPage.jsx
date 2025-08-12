@@ -71,7 +71,7 @@ const TeacherDetailPage = () => {
                         <p> Lessons online</p>
                         <p>Lessons done: {String(teacher.lessons_done)}</p>
                         <p>⭐ Rating: {String(teacher.rating)}</p>
-                        <p>Price / 1 hour: {String(teacher.price_per_hour)}$</p>
+                        <p>Price / 1 hour: <span className={css.spanPrice}>{String(teacher.price_per_hour)}$</span></p>
                           <button className={css.heart} onClick={handleFavouriteClick}>
               {teacher.favourite ? "🧡" : "🤍"}
             </button>

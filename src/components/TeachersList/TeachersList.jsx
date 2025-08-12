@@ -53,7 +53,7 @@ const TeachersList = () => {
   return (
     <div>
       <Filters />
-      <h2>Our teachers</h2>
+    
 
       {filtered.length === 0 ? (
         <p>
