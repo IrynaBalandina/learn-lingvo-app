@@ -11,7 +11,7 @@
 .detailCard {
   display: grid;
   grid-template-columns: 192px 968px;
-  column-gap: 24px;
+  /* column-gap: 24px; */
   align-items: start;
   background: #fff;
   border-radius: 12px;
@@ -24,6 +24,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: start;
+  margin-left: 40px;
 }
 
 .avatar {
@@ -37,17 +38,13 @@
 
 .contentCol {
   width: 968px; 
+
 }
 
 .languages{
-  margin-right: 300px;
+  margin-right: 280px;
 }
-.topRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-}
+
 
 .name {
   margin: 0;
@@ -69,21 +66,14 @@
 
 
 .statsRow {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  margin-top: 10px;
-  margin-bottom: 14px;
-  color: #444;
+   display: flex;
+  gap: 15px;
   font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
 }
 
-.stat {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  white-space: nowrap;
-}
+
 
 .icon {
   line-height: 1;
