@@ -56,6 +56,7 @@ Fields:
 - Favorites (available only to authenticated users)
 - Booking a trial lesson
 - User state persists after page reload
+- Colour themes on HomePage is changed every 8 seconds
 
 ---
 

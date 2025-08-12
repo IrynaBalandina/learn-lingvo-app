@@ -21,6 +21,7 @@
 
 .infoSection {
   flex: 1;
+  border: 4x;
 }
 
 .header {
@@ -38,8 +39,9 @@
 }
 
 .levelTag {
-  background: #eee;
-  border-radius: 12px;
+  background: #fff;
+  border-radius: 35px;
+  border: 1px;
   padding: 4px 10px;
   font-size: 12px;
 }

@@ -37,13 +37,17 @@ const handleFavouriteClick = () => {
  
       <div className={styles.infoSection}>
         <div className={styles.header}>
-          <p>📡 Lessons online</p>
+          <p className={styles.languages}>Languages</p>
+          <p> Lessons online</p>
           <p>Lessons done: {String(teacher.lessons_done)}</p>
           <p>⭐ Rating: {String(teacher.rating)}</p>
-          <p>💰 Price / 1 hour: {String(teacher.price_per_hour)}$</p>
+          <p>Price / 1 hour: {String(teacher.price_per_hour)}$</p>
+             <button onClick={handleFavouriteClick} className={styles.favButton}>
+            {teacher.favourite ? "🧡" : "🤍"}
+          </button>
         </div>
 
-        <h2>{String(teacher.name)} {String(teacher.surname)}</h2>
+        <h2 className={styles.name}>{String(teacher.name)} {String(teacher.surname)}</h2>
 
      <p><strong>Speaks:</strong> {
   Array.isArray(teacher.languages)
@@ -74,9 +78,7 @@ const handleFavouriteClick = () => {
 
         <div className={styles.actions}>
           <Link to={`/teachers/${teacher.id}`} className={styles.readMore}>Read more</Link>
-          <button onClick={handleFavouriteClick} className={styles.favButton}>
-            {teacher.favourite ? "💖" : "🤍"}
-          </button>
+       
         </div>
       </div>
     </div>
@@ -84,3 +86,5 @@ const handleFavouriteClick = () => {
 };
 
 export default TeacherProfile;
+
+
