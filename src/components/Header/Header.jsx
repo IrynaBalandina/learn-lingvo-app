@@ -37,7 +37,9 @@ const Header = () => {
         <nav className={styles.nav}>
           <NavLink to="/" className={({ isActive }) => isActive ? styles.active : ''}>Home</NavLink>
           <NavLink to="/teachers" className={({ isActive }) => isActive ? styles.active : ''}>Teachers</NavLink>
-        
+     
+    {user&&
+     (   <NavLink to="/favourites" className={({ isActive }) => isActive ? styles.active : ''} > Favourites </NavLink>)}
         </nav>
 
         <div className={styles.authButtons}>

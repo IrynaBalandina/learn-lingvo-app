@@ -4,10 +4,27 @@ import { openModal } from "../../redux/modalSlice";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import styles from './TeacherProfile.module.css';
+import { useState,useEffect } from "react";
+import  { fetchTeachers } from "../../redux/operations";
 
 const TeacherProfile = ({ teacher }) => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(state => state.auth.user !== null);
+ const [selectedLevel, setSelectedLevel] = useState(null);
+    useEffect(() => {
+    const savedLevel = localStorage.getItem("selectedLevel");
+    if (savedLevel) {
+      setSelectedLevel(savedLevel);
+    }
+  }, []);
+
+  const handleLevelSelect = (level) => {
+    setSelectedLevel(level);
+    localStorage.setItem("selectedLevel", level);
+  };
+  useEffect(() => {
+    if (!teacher && status === "idle") dispatch(fetchTeachers());
+  }, [dispatch, teacher, status]);
 
 const handleFavouriteClick = () => {
   if (!isAuthenticated) {
@@ -67,12 +84,19 @@ const handleFavouriteClick = () => {
 
     
         <div className={styles.levels}>
-          {Array.isArray(teacher.levels) &&
-            teacher.levels.map(level => (
-              <span key={level} className={styles.levelTag}>
-                {String(level)}
-              </span>
-            ))}
+         <div className={styles.levels}>
+                  {teacher.levels?.map((level, i) => (
+                    <span
+                      key={i}
+                      className={`${styles.levelTag} ${
+                        selectedLevel === level ? styles.activeLevel : ""
+                      }`}
+                      onClick={() => handleLevelSelect(level)}
+                    >
+                      {level}
+                    </span>
+                  ))}
+                </div>
         </div>
 
 
