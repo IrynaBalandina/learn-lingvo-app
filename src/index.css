@@ -1,44 +1,49 @@
 :root {
-    --bg-color: #ffffff;
-  --accent-color: #000000;
+
+  color-scheme: light;
+
+ 
+  --bg-color: #ffffff;
   --text-color: #000000;
-  --button-color: #000000;
-    /* color-scheme: light; */
+  --accent-color: #007bff;
+  --button-bg: #f4c550;
+  --button-text: #000000;
+  --border-color: #ccc;
+}
+
+
 body {
   font-family: 'Roboto', sans-serif;
-    background-color: var(--bg-color);
+  background-color: var(--bg-color);
   color: var(--text-color);
-}
   line-height: 1.5;
   font-weight: 400;
-/* 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424; */
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 p {
-  font-weight: 400; 
-}
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  font-weight: 400;
 }
 
+a {
+  font-weight: 500;
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0056b3;
+}
 
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
 
 button {
   border-radius: 8px;
@@ -47,22 +52,28 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--button-bg);
+  color: var(--button-text);
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: background-color 0.25s, border-color 0.25s;
 }
 
-input, select, textarea {
+button:hover {
+  background-color: #e3b13f;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto var(--accent-color);
+}
+
+
+input,
+select,
+textarea {
   background-color: #ffffff !important;
   color: #000000 !important;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   padding: 8px 10px;
   border-radius: 6px;
   font-size: 14px;
@@ -73,23 +84,15 @@ textarea::placeholder {
   color: #777777;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: var(--accent-color);
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
 }
-
-
 
 .modal {
   background-color: #ffffff !important;
   color: #000000 !important;
 }
-
-
-  button {
-    background-color: #f9f9f9;
-      background-color: var(--button-color);
-  color: white;
-  }
-
