@@ -25,7 +25,10 @@ const HomePage = () => {
       <div className={styles.left}>
           <h1>
             Unlock your potential with the best{' '}
-            <span style={{ color: theme.highlightColor }}>language</span> tutors
+            <span className=
+            {styles.spanLanguage}
+              style={{ backgroundColor: theme.languageBg }}
+            >language</span> tutors
           </h1>
           <p>
             Embark on an Exciting Language Journey with Expert Language Tutors.

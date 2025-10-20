@@ -22,7 +22,14 @@
 .left {
   flex: 1;
   width: 720px;
+  background-color: #f8f8f8f8;
 }
+
+.spanLanguage{
+  font-style: italic;
+ font-weight: 400;
+}
+
 
 .right {
   flex: 1;
@@ -55,7 +62,7 @@ button {
   margin-top: 24px;
   padding: 16px 8px;
   border: none;
-  color: white;
+  color: black;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
