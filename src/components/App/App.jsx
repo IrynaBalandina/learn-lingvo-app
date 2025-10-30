@@ -13,7 +13,7 @@ import { closeModal } from '../../redux/modalSlice';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
 const TeachersPage = lazy(() => import('../../pages/TeachersPage/TeachersPage'));
-const TeacherDetailPage = lazy(() => import('../../pages/TeacherDetailPage/TeacherDetailPage.jsx'));
+
 const FavouritePage = lazy(() => import('../../pages/FavouritePage/FavouritePage'));
 const NotFoundPage = lazy(() => import('../../pages/NotFoundPage/NotFoundPage'));
 
@@ -40,7 +40,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/teachers" element={<TeachersPage />} />
-            <Route path="/teachers/:id" element={<TeacherDetailPage />} />
+          
             <Route
               path="/favourites"
               element={

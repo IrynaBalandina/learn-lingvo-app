@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFavourite } from "../../redux/teacherSlice";
 import { openModal } from "../../redux/modalSlice";
-import { Link } from "react-router-dom";
+import BookTrialModal from "../../components/BookTrialModal/BookTrialModal.jsx";
 import { toast } from "react-toastify";
 import styles from './TeacherProfile.module.css';
 import { useState,useEffect } from "react";
@@ -10,6 +10,11 @@ import  { fetchTeachers } from "../../redux/operations";
 const TeacherProfile = ({ teacher }) => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(state => state.auth.user !== null);
+  const [expanded, setExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+const handleToggleExpand = () => {
+  setExpanded(prev => !prev);
+};
  const [selectedLevel, setSelectedLevel] = useState(null);
     useEffect(() => {
     const savedLevel = localStorage.getItem("selectedLevel");
@@ -101,7 +106,27 @@ const handleFavouriteClick = () => {
 
 
         <div className={styles.actions}>
-          <Link to={`/teachers/${teacher.id}`} className={styles.readMore}>Read more</Link>
+<button onClick={handleToggleExpand} className={styles.readMore}>
+  {expanded ? "Show less" : "Read more"}
+</button>
+{expanded && (
+  <div className={styles.moreInfo}>
+            <p ><strong>Description:</strong> {teacher.experience}</p>
+    <p><strong>Reviews:</strong></p>
+    <ul>
+      {teacher.reviews?.map((review, i) => (
+        <li key={i}>
+          <strong>{review.reviewer_name}:</strong> {review.comment}
+        </li>
+      ))}
+    </ul>
+
+     <div className={styles.trialLessonButton}>
+      <button className={styles.bookBtn} onClick={() => setIsModalOpen(true)}>🗓️ Book trial lesson</button>
+                 {isModalOpen && <BookTrialModal teacher={teacher} onClose={() => setIsModalOpen(false)} />}
+</div>
+  </div>
+)}
        
         </div>
       </div>
@@ -110,5 +135,4 @@ const handleFavouriteClick = () => {
 };
 
 export default TeacherProfile;
-
 
