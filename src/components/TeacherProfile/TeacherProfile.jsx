@@ -60,9 +60,9 @@ const handleFavouriteClick = () => {
       <div className={styles.infoSection}>
         <div className={styles.header}>
           <p className={styles.languages}>Languages</p>
-          <p> Lessons online</p>
-          <p>Lessons done: {String(teacher.lessons_done)}</p>
-          <p>⭐ Rating: {String(teacher.rating)}</p>
+          <p> Lessons online</p>|
+          <p>Lessons done: {String(teacher.lessons_done)}</p>|
+          <p>⭐ Rating: {String(teacher.rating)}</p>|
          <p>Price / 1 hour: <span className={styles.spanPrice}>{String(teacher.price_per_hour)}$</span></p>
              <button onClick={handleFavouriteClick} className={styles.favButton}>
             {teacher.favourite ? "🧡" : "🤍"}
@@ -106,9 +106,13 @@ const handleFavouriteClick = () => {
 
 
         <div className={styles.actions}>
-<button onClick={handleToggleExpand} className={styles.readMore}>
+<span
+  className={styles.readMoreLink}
+  onClick={handleToggleExpand}
+  role="button"
+>
   {expanded ? "Show less" : "Read more"}
-</button>
+</span>
 {expanded && (
   <div className={styles.moreInfo}>
             <p ><strong>Description:</strong> {teacher.experience}</p>

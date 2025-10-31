@@ -84,6 +84,7 @@ left: 425px;
 
 .bookBtn {
   margin-top: 15px;
+width: auto;
   padding: 10px;
   background-color: #f4c12f;
   border: none;

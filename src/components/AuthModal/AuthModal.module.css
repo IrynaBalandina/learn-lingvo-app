@@ -42,7 +42,7 @@ h2 {
 form {
   display: flex;
   flex-direction: column;
-  gap: 16px; /* ✅ gap між інпутами */
+  gap: 16px; 
   margin-top: 24px;
 }
 
@@ -61,7 +61,7 @@ form {
 
 button[type="submit"] {
   padding: 14px;
-  background-color: #f4c73c;
+
   border: none;
   border-radius: 12px;
   font-weight: 600;
@@ -70,9 +70,7 @@ button[type="submit"] {
   transition: background-color 0.3s;
 }
 
-button[type="submit"]:hover {
-  background-color: #e4b923;
-}
+
 
 .error {
   color: red;

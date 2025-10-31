@@ -52,15 +52,13 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--button-bg);
+  /* background-color: var(--button-bg); */
   color: var(--button-text);
   cursor: pointer;
   transition: background-color 0.25s, border-color 0.25s;
 }
 
-button:hover {
-  background-color: #e3b13f;
-}
+
 
 button:focus,
 button:focus-visible {
