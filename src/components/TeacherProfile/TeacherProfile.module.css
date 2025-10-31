@@ -110,8 +110,8 @@
 }
 
 .trialLessonButton{
-  justify-content: start;
-  margin-left: 220px;
+text-align: left;
+  /* margin-left: 220px; */
 }
 
 
