@@ -64,7 +64,6 @@ Fields:
 
 - `/` — Home
 - `/teachers` — TeachersPage
-- `/teachers/:id` — TeacherDetailPage
 - `/favorites` — Favorites (Private)
 
 ---

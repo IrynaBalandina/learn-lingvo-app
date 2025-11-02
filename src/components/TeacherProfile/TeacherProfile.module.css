@@ -59,6 +59,24 @@ white-space: nowrap;
 
 }
 
+.heartIcon {
+  width: 26px;
+  height: 26px;
+  
+  transition: color 0.2s ease;
+
+}
+.favButton:hover .favIcon,
+.favButton:focus .favIcon {
+  content: url("../../assets/favIcon.svg");
+}
+
+
+.active .favIcon {
+  content: url("../../assets/favIcon.svg");
+}
+
+
 .name {
   font-size: 20px;
   font-weight: bold;

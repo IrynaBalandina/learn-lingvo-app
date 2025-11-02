@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 import styles from './TeacherProfile.module.css';
 import { useState,useEffect } from "react";
 import  { fetchTeachers } from "../../redux/operations";
+import heartIcon from "../../assets/heartIcon.svg";
+import favIcon from "../../assets/favIcon.svg";
+
 
 const TeacherProfile = ({ teacher }) => {
   const dispatch = useDispatch();
@@ -64,8 +67,17 @@ const handleFavouriteClick = () => {
           <p>Lessons done: {String(teacher.lessons_done)}</p>|
           <p>⭐ Rating: {String(teacher.rating)}</p>|
          <p>Price / 1 hour: <span className={styles.spanPrice}>{String(teacher.price_per_hour)}$</span></p>
-             <button onClick={handleFavouriteClick} className={styles.favButton}>
-            {teacher.favourite ? "🧡" : "🤍"}
+  <button
+            onClick={handleFavouriteClick}
+            className={`${styles.favButton} ${
+              teacher.favourite ? styles.active : ""
+            }`}
+          >
+            <img
+              src={teacher.favourite ? favIcon : heartIcon}
+              alt="favourite"
+              className={styles.favIcon}
+            />
           </button>
         </div>
 
@@ -86,7 +98,13 @@ const handleFavouriteClick = () => {
             ? teacher.conditions.join("; ")
             : String(teacher.conditions || "")
         }</p>
-
+<span
+  className={styles.readMoreLink}
+  onClick={handleToggleExpand}
+  role="button"
+>
+  {expanded ? "Show less" : "Read more"}
+</span>
     
         <div className={styles.levels}>
          <div className={styles.levels}>
@@ -106,13 +124,7 @@ const handleFavouriteClick = () => {
 
 
         <div className={styles.actions}>
-<span
-  className={styles.readMoreLink}
-  onClick={handleToggleExpand}
-  role="button"
->
-  {expanded ? "Show less" : "Read more"}
-</span>
+
 {expanded && (
   <div className={styles.moreInfo}>
             <p ><strong>Description:</strong> {teacher.experience}</p>
