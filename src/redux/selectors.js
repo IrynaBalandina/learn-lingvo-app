@@ -6,4 +6,5 @@ export const teachersSelectors = {
   selectPage: state => state.teachers.page,
   selectTeacherIsLoading: state => state.teachers.isLoading,
   selectTeacherError: state => state.teachers.error,
+
 };

@@ -18,18 +18,12 @@ const TeacherProfile = ({ teacher }) => {
 const handleToggleExpand = () => {
   setExpanded(prev => !prev);
 };
- const [selectedLevel, setSelectedLevel] = useState(null);
-    useEffect(() => {
-    const savedLevel = localStorage.getItem("selectedLevel");
-    if (savedLevel) {
-      setSelectedLevel(savedLevel);
-    }
-  }, []);
 
-  const handleLevelSelect = (level) => {
-    setSelectedLevel(level);
-    localStorage.setItem("selectedLevel", level);
-  };
+
+const selectedLevel = useSelector(state => state.filters.levels[0] || "");
+
+
+
   useEffect(() => {
     if (!teacher && status === "idle") dispatch(fetchTeachers());
   }, [dispatch, teacher, status]);
@@ -106,21 +100,24 @@ const handleFavouriteClick = () => {
   {expanded ? "Show less" : "Read more"}
 </span>
     
-        <div className={styles.levels}>
-         <div className={styles.levels}>
-                  {teacher.levels?.map((level, i) => (
-                    <span
-                      key={i}
-                      className={`${styles.levelTag} ${
-                        selectedLevel === level ? styles.activeLevel : ""
-                      }`}
-                      onClick={() => handleLevelSelect(level)}
-                    >
-                      {level}
-                    </span>
-                  ))}
-                </div>
-        </div>
+
+
+<div className={styles.levels}>
+  {teacher.levels?.map((level, i) => {
+    const cleanLevel = level.replace("#", "");
+
+    return (
+      <span
+        key={i}
+        className={`${styles.levelTag} ${
+          selectedLevel === cleanLevel ? styles.activeLevel : ""
+        }`}
+      >
+        #{cleanLevel}
+      </span>
+    );
+  })}
+</div>
 
 
         <div className={styles.actions}>

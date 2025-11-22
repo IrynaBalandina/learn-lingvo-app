@@ -32,14 +32,15 @@ select:focus {
   border-color: #999;
 }
 
-.button {
+.fButton {
   padding: 8px 18px;
+  width: 166px;
   border: none;
-  background-color: #ffcc00;
+  background-color:#F4C550;
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
-  height: 40px;
+  height: auto;
   margin-top: auto;
 }
 

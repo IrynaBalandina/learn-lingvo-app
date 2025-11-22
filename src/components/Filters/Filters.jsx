@@ -4,8 +4,8 @@ import { setFilters } from '../../redux/filterSlice.js';
 import styles from './Filters.module.css';
 
 const allLanguages = ['English', 'French', 'Spanish', 'Mandarin Chinese'];
-const allLevels = ['A1 Beginner', 'A2 Elementary', 'B1 Intermediate', 'B2 Upper-Intermediate'];
-const allPrices = [10, 20, 30, 35, 40, 50];
+const allLevels = ['A1 Beginner', 'A2 Elementary', 'B1 Intermediate', 'B2 Upper-Intermediate','C1 Advanced','C2 Proficient'];
+const allPrices = [10, 20, 25, 30, 35, 40, 50];
 
 const Filters = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const Filters = () => {
       priceRange: price ? [0, Number(price)] : [0, 100],
     }));
   };
-
+localStorage.setItem("selectedLevel", level || "");
   return (
     <div className={styles.filters}>
       <div className={styles.selectWrapper}>
@@ -53,7 +53,7 @@ const Filters = () => {
         </select>
       </div>
 
-      <button className={styles.button} onClick={applyFilters}>Apply</button>
+      <button className={styles.fButton} onClick={applyFilters}>Apply</button>
     </div>
   );
 };

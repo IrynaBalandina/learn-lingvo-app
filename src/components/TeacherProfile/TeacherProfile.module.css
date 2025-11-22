@@ -45,6 +45,7 @@ white-space: nowrap;
 
 .spanPrice {
   font-weight: bold;
+  color:#38CD3E ;
 }
 
 .favButton {
@@ -54,7 +55,7 @@ white-space: nowrap;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 22px;
+padding: auto;
   width:50px;
 
 }
@@ -89,19 +90,22 @@ white-space: nowrap;
   flex-wrap: wrap;
   gap: 8px;
   margin: 14px 0 10px;
+  
 }
 
 .levelTag {
   padding: 4px 10px;
   font-size: 12px;
   border-radius: 14px;
-  background-color: #e8e8e8;
+    border: 1px solid #12141733;
+
+  background-color: #ffffff;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .activeLevel {
-  background: #f0c04a;
+  background: #F4C550 ;
   color: #111;
 }
 
@@ -137,7 +141,7 @@ text-align: left;
 
 
 .bookBtn {
-  background: #f0c04a;
+  background: #F4C550;
   border: none;
   color: #111;
   padding: 10px 18px;

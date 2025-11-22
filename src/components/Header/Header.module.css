@@ -70,6 +70,8 @@
 }
 
 .registerBtn {
+  width: 166px;
+  height:48px ;
   background: #000;
   color: #fff;
   padding-top:0;
@@ -82,6 +84,8 @@
 }
 
 .logoutBtn{
+  width: 166px;
+  height:48px ;
     background: #000;
   color: #fff;
   padding-top:0;
