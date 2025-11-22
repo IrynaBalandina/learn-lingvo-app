@@ -1,6 +1,8 @@
 
 
  .card {
+max-width: 1184px;
+ margin: auto;
   display: flex;
   gap: 28px;
   background-color: #fff;
@@ -8,7 +10,7 @@
   padding: 32px;
   margin-bottom: 24px;
   transition: all 0.3s ease;
-  width: 100%;
+ 
 }
 
 .avatarSection {
